@@ -11,7 +11,7 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/{id}") // 프로필 보기
     public String profile(@PathVariable int id) {
         return "user/profile";
     }

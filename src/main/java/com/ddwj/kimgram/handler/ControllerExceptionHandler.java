@@ -1,8 +1,11 @@
 package com.ddwj.kimgram.handler;
 
+import com.ddwj.kimgram.handler.ex.CustomValidationApiException;
 import com.ddwj.kimgram.handler.ex.CustomValidationException;
 import com.ddwj.kimgram.util.Script;
 import com.ddwj.kimgram.web.dto.CMRespDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +27,12 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(CustomValidationException.class)  // 사용자에게 이 방법이 더 좋다.
     public String validationException(CustomValidationException e) {
         return Script.back(e.getErrorMap().toString());
+    }
+
+
+    // 뒷단 막기 위해서 추가한 핸들러 - 유효성 실패 :얘는 데이터를 리턴한다.
+    @ExceptionHandler(CustomValidationApiException.class)  // 사용자에게 이 방법이 더 좋다.
+    public ResponseEntity<?> validationException(CustomValidationApiException e) {
+        return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),e.getErrorMap()), HttpStatus.BAD_REQUEST);
     }
 }
