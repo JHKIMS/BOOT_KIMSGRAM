@@ -22,15 +22,20 @@ public class User {
     // 나는 MariaDB를 쓰고 있기 때문에, 번호 증가 전략을 auto_increment로 사용한다.
     private int id;
 
-    @Column(unique = true)
+    @Column(length = 20, unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String name;
     private String website;
     private String bio;
+
+    @Column(nullable = false)
     private String email;
+
     private String phone;
     private String gender;
 
