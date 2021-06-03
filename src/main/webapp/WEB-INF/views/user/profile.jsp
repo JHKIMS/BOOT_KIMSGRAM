@@ -101,7 +101,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
 	<div class="modal">
-		<button onclick="location.href='/user/update'">회원정보 변경</button>
+		<button onclick="location.href='/user/1/update'">회원정보 변경</button>
 		<button onclick="location.href='/logout'">로그아웃</button>
 		<button onclick="closePopup('.modal-info')">취소</button>
 	</div>
@@ -122,7 +122,7 @@
 <div class="modal-subscribe">
 	<div class="subscribe">
 		<div class="subscribe-header">
-			<span>구독정보</span>
+			<span>팔로우정보</span>
 			<button onclick="modalClose()">
 				<i class="fas fa-times"></i>
 			</button>

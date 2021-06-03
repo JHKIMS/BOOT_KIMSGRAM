@@ -29,7 +29,7 @@ public class PrincipalDetails implements UserDetails {
                 return user.getRole();
             }
         });*/ // 밑에 람다식으로 변경해보자.
-        
+
         collector.add(() -> {
             return user.getRole();
         });
