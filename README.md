@@ -2,7 +2,7 @@
 
 ### 의존성
 
-- Sring Boot DevTools
+- Spring Boot DevTools
 - Lombok
 - Spring Data JPA
 - MariaDB Driver

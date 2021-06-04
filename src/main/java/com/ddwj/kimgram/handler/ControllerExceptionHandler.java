@@ -1,5 +1,6 @@
 package com.ddwj.kimgram.handler;
 
+import com.ddwj.kimgram.handler.ex.CustomApiException;
 import com.ddwj.kimgram.handler.ex.CustomValidationApiException;
 import com.ddwj.kimgram.handler.ex.CustomValidationException;
 import com.ddwj.kimgram.util.Script;
@@ -34,5 +35,11 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(CustomValidationApiException.class)  // 사용자에게 이 방법이 더 좋다.
     public ResponseEntity<?> validationException(CustomValidationApiException e) {
         return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),e.getErrorMap()), HttpStatus.BAD_REQUEST);
+    }
+
+    // 우선은 팔로우 부분을 위한 Exception처리
+    @ExceptionHandler(CustomApiException.class) 
+    public ResponseEntity<?> apiException(CustomApiException e) {
+        return new ResponseEntity<>(new CMRespDto<>(-1,e.getMessage(),null), HttpStatus.BAD_REQUEST);
     }
 }

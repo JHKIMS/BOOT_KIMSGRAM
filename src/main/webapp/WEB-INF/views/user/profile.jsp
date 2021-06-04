@@ -29,7 +29,7 @@
 				<h2>TherePrograming</h2>
 
 				<button class="cta" onclick="location.href='/image/upload'">사진등록</button>
-				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+				<button class="cta" onclick="toggleSubscribe(this)">팔로우</button>
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
 				</button>
@@ -39,7 +39,7 @@
 				<ul>
 					<li><a href=""> 게시물<span>3</span>
 					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
+					<li><a href="javascript:subscribeInfoModalOpen();"> 팔로우정보<span>2</span>
 					</a></li>
 				</ul>
 			</div>
@@ -138,7 +138,7 @@
 					<h2>love</h2>
 				</div>
 				<div class="subscribe__btn">
-					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button>
+					<button class="cta blue" onclick="toggleSubscribeModal(this)">팔로우취소</button>
 				</div>
 			</div>
 
