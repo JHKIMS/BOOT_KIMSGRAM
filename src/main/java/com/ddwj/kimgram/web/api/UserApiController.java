@@ -37,7 +37,7 @@ public class UserApiController {
 
             for (FieldError error : bindingResult.getFieldErrors()) {
                 errorMap.put(error.getField(), error.getDefaultMessage());
-                System.out.println(error.getDefaultMessage());
+//                System.out.println(error.getDefaultMessage());
             }
             throw new CustomValidationApiException("유효성 검사 실패함.", errorMap);
 
@@ -45,6 +45,7 @@ public class UserApiController {
             User userEntity = userService.updateUser(id, userUpdateDto.toEntity());
             principalDetails.setUser(userEntity);
             return new CMRespDto<>(1,"회원수정완료",userEntity);
+            /* 응답시에 userEntity의 모든 getter함수가 호출되고 JSON으로 파싱하여 응답한다.*/
         }
 
 

@@ -17,7 +17,7 @@ public class FollowService {
         try {
             followRepository.mFollow(fromUserId, toUserId);
         }catch (Exception e){
-            throw new CustomApiException("이미 구독을 했습니다.");
+            throw new CustomApiException("이미 팔로우함.");
         }
 
     }
