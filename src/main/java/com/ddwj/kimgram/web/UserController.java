@@ -3,6 +3,7 @@ package com.ddwj.kimgram.web;
 import com.ddwj.kimgram.config.auth.PrincipalDetails;
 import com.ddwj.kimgram.domain.user.User;
 import com.ddwj.kimgram.service.UserService;
+import com.ddwj.kimgram.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,11 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/user/{id}") // 프로필 보기
-    public String profile(@PathVariable int id, Model model) {
-        User userEntity = userService.userProfile(id);
+    @GetMapping("/user/{pageUserId}") // 프로필 보기
+    public String profile(@PathVariable int pageUserId, Model model,@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        UserProfileDto profileDto = userService.userProfile(pageUserId, principalDetails.getUser().getId());
 
-        model.addAttribute("user", userEntity);
+        model.addAttribute("profileDto", profileDto);
         return "user/profile";
     }
 

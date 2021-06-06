@@ -3,6 +3,7 @@ package com.ddwj.kimgram.service;
 import com.ddwj.kimgram.domain.user.User;
 import com.ddwj.kimgram.domain.user.UserRepository;
 import com.ddwj.kimgram.handler.ex.CustomValidationApiException;
+import com.ddwj.kimgram.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Supplier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,13 +40,20 @@ public class UserService {
 
     // 이미지 업로드 부분
     @Transactional(readOnly = true) // 불필요한 연산을 하지 않는다.
-    public User userProfile(int userId){
+    public UserProfileDto userProfile(int pageUserId, int principalId){
+        UserProfileDto profileDto = new UserProfileDto();
+
         // select * from image where userId=:userId;
-        User userEntity = userRepository.findById(userId)
+        User userEntity = userRepository.findById(pageUserId)
                 .orElseThrow(()->{
                     throw new CustomValidationApiException("해당 프로필 페이지는 없는 페이지입니다.");
                 });
-        return userEntity;
+
+        profileDto.setUser(userEntity);
+        profileDto.setPageOwnerState(pageUserId==principalId); // 1은 페이지 주인 , -1은 주인이 아니다.
+        profileDto.setImageCount(userEntity.getImages().size());
+
+        return profileDto;
     }
 
 }

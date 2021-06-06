@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserProfileDto {
-    private int isPageOwner;
+
+    private int imageCount;
+    private boolean pageOwnerState; // 페이지 주인 유저
     private User user;
+
 }
