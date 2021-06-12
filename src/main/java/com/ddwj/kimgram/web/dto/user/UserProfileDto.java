@@ -16,4 +16,6 @@ public class UserProfileDto {
     private boolean pageOwnerState; // 페이지 주인 유저
     private User user;
 
+    private boolean followState;
+    private int followCount;
 }

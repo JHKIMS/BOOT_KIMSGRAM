@@ -176,7 +176,7 @@ span {
 }
 
 /*버튼 블루*/
-.cta.blue {
+.cta.black {
   background: #0095f6 !important;
-  color: #fff !important;
+  color: black !important;
 }

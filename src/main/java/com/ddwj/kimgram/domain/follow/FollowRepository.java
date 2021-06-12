@@ -15,4 +15,14 @@ public interface FollowRepository extends JpaRepository<Follow, Integer> {
     @Query(value="Delete From follow Where fromUserid=:fromUserId And toUserId=:toUserId",
             nativeQuery = true)
     void mUnFollow(int fromUserId, int toUserId);
+
+    @Query(value="Select count(*) from follow where fromUserId=:principalId And toUserId=:pageUserId", nativeQuery = true)
+    int mFollowState(int principalId, int pageUserId);
+    // Count가 1이라면 구독된 상태
+    
+    @Query(value="Select count(*) from follow Where fromUserId=:pageUserId", nativeQuery = true)
+    int mFollowCount(int pageUserId);
+    // Count가 1이라면 해당 페이지의 주인이다.
+
+
 }

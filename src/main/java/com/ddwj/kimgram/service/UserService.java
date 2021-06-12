@@ -1,5 +1,6 @@
 package com.ddwj.kimgram.service;
 
+import com.ddwj.kimgram.domain.follow.FollowRepository;
 import com.ddwj.kimgram.domain.user.User;
 import com.ddwj.kimgram.domain.user.UserRepository;
 import com.ddwj.kimgram.handler.ex.CustomValidationApiException;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final FollowRepository followRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
@@ -52,6 +54,13 @@ public class UserService {
         profileDto.setUser(userEntity);
         profileDto.setPageOwnerState(pageUserId==principalId); // 1은 페이지 주인 , -1은 주인이 아니다.
         profileDto.setImageCount(userEntity.getImages().size());
+
+        int followState = followRepository.mFollowState(principalId, pageUserId);
+        int followCount = followRepository.mFollowCount(pageUserId);
+
+        profileDto.setFollowState(followState == 1);
+        profileDto.setFollowCount(followCount);
+
 
         return profileDto;
     }
