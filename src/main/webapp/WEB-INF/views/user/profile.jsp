@@ -23,7 +23,7 @@
 		</div>
 		<!--유저이미지end-->
 
-		<!--유저정보 및 사진등록 구독하기-->
+		<!--유저정보 및 사진등록 팔로우하기-->
 		<div class="profile-right">
 			<div class="name-group">
 				<h2>${profileDto.user.name}</h2>
@@ -35,10 +35,10 @@
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${profileDto.followState}">
-								<button class="cta black" onclick="toggleSubscribe(${profileDto.user.id},this)">팔로우 취소</button>
+								<button class="cta black" onclick="toggleFollow(${profileDto.user.id},this)">팔로우 취소</button>
 							</c:when>
 							<c:otherwise>
-								<button class="cta" onclick="toggleSubscribe(${profileDto.user.id},this)">팔로우</button>
+								<button class="cta" onclick="toggleFollow(${profileDto.user.id},this)">팔로우</button>
 							</c:otherwise>
 						</c:choose>
 						
@@ -54,10 +54,13 @@
 
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>${profileDto.imageCount}</span>
-					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen(${profileDto.user.id});"> 팔로우정보<span>${profileDto.followCount}</span>
-					</a></li>
+					<li>
+						<a href=""> 게시물<span>${profileDto.imageCount}</span></a>
+					</li>
+					<li>
+						<a href="javascript:followInfoModalOpen(${profileDto.user.id});"> 팔로우정보
+						<span>${profileDto.followCount}</span></a>
+					</li>
 				</ul>
 			</div>
 			<div class="state">
@@ -65,7 +68,7 @@
 				<h4>${profileDto.user.website}</h4>
 			</div>
 		</div>
-		<!--유저정보 및 사진등록 구독하기-->
+		<!--유저정보 및 사진등록 팔로우하기-->
 
 	</div>
 </section>
@@ -99,7 +102,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
 	<div class="modal">
-		<button onclick="location.href='/user/1/update'">회원정보 변경</button>
+		<button onclick="location.href='/user/${myinfo.user.id}/update'">회원정보 변경</button>
 		<button onclick="location.href='/logout'">로그아웃</button>
 		<button onclick="closePopup('.modal-info')">취소</button>
 	</div>

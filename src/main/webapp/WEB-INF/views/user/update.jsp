@@ -19,10 +19,10 @@
 					<h2>${myinfo.user.username}</h2>
 				</div>
 			</div>
-			<!--프로필셋팅 아이디영역end-->
+			<!--프로필셋팅 아이디 영역 end-->
 
 			<!--프로필 수정-->
-			<form id="profileUpdate" onsubmit="update(${myinfo.user.id}, event)">
+			<form id="profileUpdate" method="post" onsubmit="update(${myinfo.user.id}, event)">
 				<div class="content-item__02">
 					<div class="item__title">이름</div>
 					<div class="item__input">
@@ -59,8 +59,7 @@
 				<div class="content-item__07">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<span><b>개인정보</b></span> <span>비즈니스나 반려동물 등에 사용된 계정인 경우에도
-							회원님의 개인 정보를 입력하세요. 공개 프로필에는 포함되지 않습니다.</span>
+						<span><b>개인정보</b></span> <span> 공개 프로필에는 포함되지 않음.</span>
 					</div>
 				</div>
 				<div class="content-item__08">

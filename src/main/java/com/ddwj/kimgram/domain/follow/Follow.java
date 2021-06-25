@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(
-        // 유니크 제약 조건 걸어주기
+        // 유니크 제약 조건 걸어주기(팔로우 중복을 막아주는 부분)
         uniqueConstraints ={
                 @UniqueConstraint(
-                        name="subscribe_uk",
+                        name="follow_uk",
                         columnNames = {"fromUserId", "toUserId"}
                         )
         }

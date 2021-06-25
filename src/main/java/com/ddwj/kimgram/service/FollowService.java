@@ -16,12 +16,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class FollowService {
 
     private final FollowRepository followRepository;
-    private final EntityManager em;  // 모든 Repository는 EntityManager의 구현체이다.
+    private final EntityManager em;  // 모든 Repository는 EntityManager의 구현체이다. 이 부분은 팔로우 모달창을 띄우기 위해서 주입
 
     @Transactional
     public void follow(int fromUserId, int toUserId) {
@@ -45,9 +46,9 @@ public class FollowService {
         // 쿼리의 준비 단계
         StringBuffer sb = new StringBuffer();
         sb.append("select u.id, u.username, u.profileImageUrl, ");
-        sb.append("if((select 1 from follow where fromUserId = ? and toUserId = u.id), 1, 0) followState, ");
-        sb.append("if((?=u.id), 1, 0) equalUserState ");
-        sb.append("from user u inner join follow f ");
+        sb.append("if((select 1 from FOLLOW where fromUserId = ? and toUserId = u.id), 1, 0) FollowState, ");
+        sb.append("if((?=u.id), 1, 0) EqualUserState ");
+        sb.append("from USER u inner join FOLLOW f ");
         sb.append("on u.id = f.toUserId ");
         sb.append("where f.fromUserId=?"); // 세미콜론은 생략해야 한다.
 
@@ -61,7 +62,9 @@ public class FollowService {
                 .setParameter(2, principalId)
                 .setParameter(3, pageUserId);
 
-        // 쿼리 실행(qlrm 라이브러리가 필요하다)
+        /*쿼리 실행(QLRM 라이브러리가 필요하다)
+          별도로 의존성을 추가해줘야한다.
+          QLRM이란 : 디비에서 리절트된 결과를 자바 클래스에 매핑해주는 라이브러리이다.*/
         JpaResultMapper result = new JpaResultMapper();
         List<FollowResDto> followResDtos = result.list(query, FollowResDto.class);
 
@@ -69,3 +72,4 @@ public class FollowService {
     }
 
 }
+

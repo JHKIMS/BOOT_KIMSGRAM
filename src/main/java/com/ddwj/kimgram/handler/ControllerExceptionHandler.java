@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 
 @ControllerAdvice // 이 어노테이션이 붙으므로 이 해당 클래스가 모든 Exception을 낚아챈다.
 @RestController

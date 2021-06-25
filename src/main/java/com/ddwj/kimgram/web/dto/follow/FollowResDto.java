@@ -14,7 +14,8 @@ public class FollowResDto {
     private int id;
     private String username;
     private String profileImageUrl;
-    private Integer followState;
-    private Integer equalUserState;
+    private Integer followState; // 팔로우를 하고 있는지
+    private Integer equalUserState; // 동일 유저인지
 
 }
+

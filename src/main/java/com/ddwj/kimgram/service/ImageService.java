@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class ImageService {
 
     private final ImageRepository imageRepository;
+
 
     //이미지 경로 가져오기
     @Value("${file.path}") // yml파일에 file: path: 라고 해놓았다.
@@ -43,7 +45,17 @@ public class ImageService {
             e.printStackTrace();
         }
 
+        
+        // 이미지 테이블에 저장
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
         imageRepository.save(image);
     }
+
+    @Transactional(readOnly = false) // 더티체킹을 안한다.
+    public List<Image> imageStory(int principalId){
+        List<Image> images = imageRepository.mStory(principalId);
+        return images;
+    }
+
+
 }

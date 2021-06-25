@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FollowRepository extends JpaRepository<Follow, Integer> {
 
-    @Modifying // Insert, Delete, Update 를 네이티브 쿼리로 작성시 해당 어노테이션이 필요하다.
+    @Modifying // Insert, Delete, Update 를 네이티브 쿼리로 작성할 시에 해당 어노테이션이 필요하다.
     @Query(value="Insert Into follow(fromUserId, toUserId, createDate) Values(:fromUserId, :toUserId, now())",
             nativeQuery = true)
     void mFollow(int fromUserId, int toUserId);

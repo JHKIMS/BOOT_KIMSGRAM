@@ -36,5 +36,5 @@ spring:
       name: test
       password: 1234   
 
-file:
+file:   # 이미지 파일이 저장되는 경로.
   path: C:\Users\cotmd\intel_stagram\upload/

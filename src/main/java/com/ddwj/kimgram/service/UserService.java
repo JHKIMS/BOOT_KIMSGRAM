@@ -19,7 +19,7 @@ public class UserService {
     private final FollowRepository followRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Transactional
+    @Transactional //  회원수정 부분
     public User updateUser(int id, User user){
         // 1. 영속화
         User userEntity = userRepository.findById(id)   // 만약 이 예외를 터뜨려보고 싶은 경우에는 id부분에 임의로 숫자를 지정해서 넣어주면 된다.

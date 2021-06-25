@@ -18,7 +18,7 @@ public class CustomValidationApiException extends RuntimeException {
         return errorMap;
     }
 
-    //유효성 처리를 하기 위해서 추가하는 부분(뒷단)
+    //유효성 처리를 하기 위해서 추가하는 부분
     public CustomValidationApiException(String message) {
         super(message);
     }

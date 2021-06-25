@@ -13,6 +13,7 @@ public class ImageUploadDto {
 
     private String caption;
 
+    // imageUploadDto를 image에 집어넣을 수 있게끔 해주는 로직이다.
     public Image toEntity(String postImageUrl, User user){
         return Image.builder()
                 .caption(caption)
