@@ -6,6 +6,9 @@ import com.ddwj.kimgram.domain.image.ImageRepository;
 import com.ddwj.kimgram.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,8 +55,8 @@ public class ImageService {
     }
 
     @Transactional(readOnly = false) // 더티체킹을 안한다.
-    public List<Image> imageStory(int principalId){
-        List<Image> images = imageRepository.mStory(principalId);
+    public Page<Image> imageStory(int principalId, Pageable pageable){
+        Page<Image> images = imageRepository.mStory(principalId, pageable);
         return images;
     }
 
