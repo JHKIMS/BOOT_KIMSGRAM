@@ -13,7 +13,7 @@ function update(userId, event) {
         dataType: "json"
     }).done(res=>{ // HTTPSTATUS 상태코드 200
         console.log("업데이트 성공",res);
-        // location.href=`/user/${userId}`;
+        location.href=`/user/${userId}`;
     }).fail(error=>{ // HTTPSTATUS 상태코드 200번대가 아닐 경우에
         if(error.data==null){
             alert(error.responseJSON.message);

@@ -2,6 +2,7 @@ package com.ddwj.kimgram.domain.likes;
 
 import com.ddwj.kimgram.domain.image.Image;
 import com.ddwj.kimgram.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,7 @@ public class Likes { // N
     @ManyToOne
     private Image image;  // 1개의 이미지는 100개의 좋아요가 있을 수 있다. 1
 
+    @JsonIgnoreProperties({"images"})
     @JoinColumn(name="userId")
     @ManyToOne
     private User user;
