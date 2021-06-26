@@ -1,5 +1,6 @@
 package com.ddwj.kimgram.domain.image;
 
+import com.ddwj.kimgram.domain.likes.Likes;
 import com.ddwj.kimgram.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Data
@@ -32,6 +34,17 @@ public class Image {
     @ManyToOne
     private User user; // 누가 업로드 하는지 알아야하기 때문에 User가 필요하다.
     //한 명의 유저는 여러개의 사진(게시물)을 등록할 수 있다.
+
+    // 이미지 좋아요
+    @OneToMany(mappedBy = "image")
+    @JsonIgnoreProperties({"image"})
+    private List<Likes> likes;
+
+    @Transient // DB에 컬럼이 만들어지지 않는다.
+    private boolean likeState;
+
+    @Transient
+    private int likeCount;
 
     private LocalDateTime createDate;
 
